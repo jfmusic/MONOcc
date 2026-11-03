@@ -1,0 +1,28 @@
+name: Linux contributor preview validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "10.0.x"
+      - name: Build and package
+        run: ./platform/linux/build.sh
+      - name: Inspect Debian package
+        run: |
+          dpkg-deb --info platform/linux/dist/MONOcc-0.2.0-Linux-amd64-preview.deb
+          dpkg-deb --contents platform/linux/dist/MONOcc-0.2.0-Linux-amd64-preview.deb
+      - name: Install desktop smoke-test dependencies
+        run: sudo apt-get update && sudo apt-get install -y xvfb libx11-6 libxtst6 libice6 libsm6 libfontconfig1
+      - name: Run Linux interface smoke check
+        run: xvfb-run -a platform/linux/dist/publish/MONOcc --smoke-test
+      - uses: actions/upload-artifact@v6
+        with:
+          name: MONOcc-Linux-contributor-preview
+          path: platform/linux/dist/*.deb
+          if-no-files-found: error

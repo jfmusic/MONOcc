@@ -1,0 +1,35 @@
+name: Import reviewed source archive
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Expand reviewed source into repository folders
+        shell: python
+        run: |
+          from pathlib import Path, PurePosixPath
+          import zipfile
+          with zipfile.ZipFile("MONOcc-source-upload.zip") as archive:
+              for item in archive.infolist():
+                  parts = PurePosixPath(item.filename).parts
+                  if not parts or parts[0] != "MONOcc-Source" or ".." in parts:
+                      raise RuntimeError("Unexpected archive path")
+                  relative = Path(*parts[1:])
+                  if not parts[1:] or parts[1] in {".git", ".github"} or item.is_dir():
+                      continue
+                  relative.parent.mkdir(parents=True, exist_ok=True)
+                  relative.write_bytes(archive.read(item))
+                  mode = item.external_attr >> 16
+                  if mode & 0o111:
+                      relative.chmod(0o755)
+      - name: Commit source files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Import MONOcc source, GPL license, guides and platform previews"
+          git push

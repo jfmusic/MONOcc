@@ -1,0 +1,11 @@
+[package]
+name = "sextant-usb"
+description = "real-device usb backend (nusb): enumeration, control handshake, bulk transfers"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sextant-core.workspace = true
+nusb.workspace = true

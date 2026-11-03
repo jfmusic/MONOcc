@@ -1,0 +1,2 @@
+# Access only the Monogram CoreV2 serial interface for the active desktop user.
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="a2c5", TAG+="uaccess"

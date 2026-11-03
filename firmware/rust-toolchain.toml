@@ -1,0 +1,10 @@
+# the avr firmware needs a nightly toolchain with the compiler sources so core
+# can be built for the avr target. the exact target spec is added in phase 7.
+#
+# typical build (phase 7):
+#   cargo +nightly build --release -Z build-std=core \
+#       --target avr-none -C target-cpu=at90usb1286
+# or via ravedude. see firmware/README.md.
+[toolchain]
+channel = "nightly"
+components = ["rust-src"]

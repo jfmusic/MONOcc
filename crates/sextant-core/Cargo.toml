@@ -1,0 +1,21 @@
+[package]
+name = "sextant-core"
+description = "core library: wire protocol, data model, behavior engine, controller"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+serde.workspace = true
+# preserve_order keeps object keys in insertion order so the json wire bytes
+# match the upstream python dict ordering exactly.
+serde_json = { workspace = true, features = ["preserve_order"] }
+rmpv.workspace = true
+rust-embed.workspace = true
+thiserror.workspace = true
+image.workspace = true
+crossbeam-channel.workspace = true
+
+[dev-dependencies]
+# nothing yet; tests use the embedded resources

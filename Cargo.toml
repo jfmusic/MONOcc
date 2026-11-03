@@ -1,0 +1,52 @@
+# sextant host workspace. the avr firmware lives in firmware/ and is built
+# separately with a nightly toolchain and the avr target (see firmware/), so it
+# is excluded from this host build.
+[workspace]
+resolver = "2"
+members = [
+    "crates/sextant-core",
+    "crates/sextant-fake",
+    "crates/sextant-usb",
+    "crates/sextant-sim",
+    "crates/sextant-cli",
+    "crates/sextant-failsafe",
+]
+exclude = ["firmware"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/khimaros/sextant"
+authors = ["khimaros <me@khimaros.com>"]
+
+# intended dependency set, declared once for the workspace and wired into crates
+# as the matching phase lands (see ROADMAP.md). unused entries are inert -- cargo
+# only resolves a dependency when a member actually references it.
+[workspace.dependencies]
+# internal crates
+sextant-core = { path = "crates/sextant-core" }
+sextant-fake = { path = "crates/sextant-fake" }
+sextant-usb = { path = "crates/sextant-usb" }
+sextant-sim = { path = "crates/sextant-sim" }
+# protocol / data model
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rmpv = "1"
+# cli / runtime
+clap = { version = "4", features = ["derive"] }
+crossbeam-channel = "0.5"
+rand = "0.8"
+thiserror = "2"
+anyhow = "1"
+# real-device usb backend (pure rust, no libusb)
+nusb = "0.1"
+# simulator gui
+macroquad = "0.4"
+# embedded resources + png decode for image conversion
+rust-embed = "8"
+image = "0.25"
+
+[profile.release]
+opt-level = 3
+lto = true

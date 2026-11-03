@@ -1,0 +1,21 @@
+[package]
+name = "sextant-cli"
+description = "the sextant command-line binary (subcommands for device, simulator, demos, tools)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "sextant"
+path = "src/main.rs"
+
+[dependencies]
+sextant-core.workspace = true
+sextant-fake.workspace = true
+sextant-usb.workspace = true
+sextant-sim.workspace = true
+clap.workspace = true
+anyhow.workspace = true
+serde_json.workspace = true
+rand.workspace = true

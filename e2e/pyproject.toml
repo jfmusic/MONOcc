@@ -1,0 +1,10 @@
+[project]
+name = "sextant-e2e"
+version = "0.1.0"
+description = "black-box end-to-end tests driving the sextant headless binary"
+requires-python = ">=3.9"
+dependencies = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+addopts = "-q"

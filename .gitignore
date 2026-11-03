@@ -1,0 +1,26 @@
+# rust build output
+/target
+/firmware/target
+**/*.rs.bk
+
+# project scratch output
+/out
+
+# proprietary reference data: embedded into local builds when present, but not
+# redistributed upstream (obtain separately and drop under resources/).
+/crates/sextant-core/resources/firmware/
+/crates/sextant-core/resources/assets/palettegear/reference/
+
+# python e2e
+/e2e/.venv
+__pycache__/
+*.pyc
+
+# editor / os
+.DS_Store
+*.swp
+
+# Native desktop build outputs
+**/bin/
+**/obj/
+**/dist/

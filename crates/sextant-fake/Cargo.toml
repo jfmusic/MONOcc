@@ -1,0 +1,12 @@
+[package]
+name = "sextant-fake"
+description = "in-memory fake device: emulates the usb protocol for tests and the simulator"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sextant-core.workspace = true
+serde_json.workspace = true
+crossbeam-channel.workspace = true

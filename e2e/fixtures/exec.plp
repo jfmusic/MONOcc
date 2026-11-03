@@ -1,0 +1,18 @@
+{
+  "app_version": "2.6.4",
+  "midiChannel": -1,
+  "title": "EXEC",
+  "tabType": "Keyboard",
+  "orientation": 0,
+  "module_mappings": {
+    "actionMap": {
+      "[slot=(1,0)]": {
+        "pressed": {
+          "action": "executeCommand",
+          "argv": ["${SEXTANT_CONFIG}/scripts/hello.sh", "e2e"]
+        }
+      }
+    },
+    "keyMap": {}
+  }
+}

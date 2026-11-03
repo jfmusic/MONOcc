@@ -1,0 +1,11 @@
+[package]
+name = "sextant-failsafe"
+description = "pure never-brick boot-decision logic shared by the host tests and the avr firmware"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+# no dependencies: this is dependency-free, no_std logic so the same code the avr
+# firmware runs can be unit tested on the host.
+[dependencies]

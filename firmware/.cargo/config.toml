@@ -1,0 +1,14 @@
+# avr build configuration for the at90usb1286. core is built from source for the
+# avr target; avr-gcc links the startup code and libgcc for the chip.
+[build]
+target = "avr-none"
+
+[unstable]
+build-std = ["core"]
+
+[target.avr-none]
+rustflags = [
+    "-C", "target-cpu=at90usb1286",
+    "-C", "linker=avr-gcc",
+    "-C", "link-arg=-mmcu=at90usb1286",
+]

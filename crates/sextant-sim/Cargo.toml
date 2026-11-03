@@ -1,0 +1,13 @@
+[package]
+name = "sextant-sim"
+description = "macroquad gui simulator: renders the layout and forwards keyboard input to the fake device"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sextant-core.workspace = true
+sextant-fake.workspace = true
+macroquad.workspace = true
+serde_json.workspace = true

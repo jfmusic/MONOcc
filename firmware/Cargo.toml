@@ -1,0 +1,28 @@
+[package]
+name = "sextant-firmware"
+description = "avr firmware for the at90usb1286 palette base; bulletproof failsafe bootloader first"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/khimaros/sextant"
+
+# standalone workspace: keeps the host workspace (../Cargo.toml) from trying to
+# build this no_std avr crate for the host target.
+[workspace]
+
+[dependencies]
+# register access comes from the official svd-generated pac, so eeprom / wdt /
+# port addresses are not hand-typed; the never-brick decision is the host-tested
+# sextant-failsafe crate.
+avr-device = { version = "0.8", features = ["at90usb1286", "rt"] }
+panic-halt = "0.2"
+sextant-failsafe = { path = "../crates/sextant-failsafe" }
+
+[profile.release]
+opt-level = "s"
+lto = true
+panic = "abort"
+codegen-units = 1
+
+[profile.dev]
+panic = "abort"

@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup><OutputType>WinExe</OutputType><TargetFramework>net10.0-windows</TargetFramework><UseWindowsForms>true</UseWindowsForms><EnableWindowsTargeting>true</EnableWindowsTargeting><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><Version>0.2.0</Version><AssemblyName>MONOcc</AssemblyName><ApplicationIcon>MONOcc.ico</ApplicationIcon><PublishSingleFile>true</PublishSingleFile><SelfContained>true</SelfContained><IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract><DebugType>none</DebugType><PublishTrimmed>false</PublishTrimmed></PropertyGroup>
+<ItemGroup><ProjectReference Include="../Monocc.Core/Monocc.Core.csproj"/><PackageReference Include="System.IO.Ports" Version="10.0.0"/><EmbeddedResource Include="../../../LICENSE" Link="LICENSE.txt"/></ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+{
+  "app_version": "2.6.4",
+  "midiChannel": -1,
+  "title": "BEHAVIORS",
+  "tabType": "Keyboard",
+  "orientation": 0,
+  "module_mappings": {
+    "actionMap": {
+      "[slot=(1,0)]": { "pressed": { "action": "togglePreview" } },
+      "[slot=(1,1)]": { "long_pressed": { "action": "togglePreview" } },
+      "[slot=(-1,0)]": { "double_pressed": { "action": "togglePreview" } }
+    },
+    "mediaMap": {
+      "8R+": { "pressed": { "key": "PK_MEDIA_PLAYPAUSE" } }
+    },
+    "keyMap": {}
+  }
+}

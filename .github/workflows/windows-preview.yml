@@ -1,0 +1,21 @@
+name: Windows preview validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "10.0.x"
+      - name: Build and run Windows checks
+        shell: pwsh
+        run: ./platform/windows/build.ps1
+      - uses: actions/upload-artifact@v6
+        with:
+          name: MONOcc-Windows-preview-unsigned
+          path: platform/windows/dist/MONOcc-0.2.0-Windows-x64-Setup.exe
+          if-no-files-found: error
